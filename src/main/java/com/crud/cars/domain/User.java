@@ -17,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
-    private long id;
+    private Long id;
 
     @Column
     @NotNull
@@ -30,4 +30,10 @@ public class User {
     @Column
     @NotNull
     private String email;
+
+    public User(String firstname, String lastname, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
 }

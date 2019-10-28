@@ -34,4 +34,10 @@ public class CarAdditionalInfo {
     @Column
     private LocalDate insuranceDate;
 
+    public CarAdditionalInfo(Car car, String registration, LocalDate inspectionDate, LocalDate insuranceDate) {
+        this.car = car;
+        this.registration = registration;
+        this.inspectionDate = inspectionDate;
+        this.insuranceDate = insuranceDate;
+    }
 }

@@ -12,7 +12,7 @@ public class CarDto {
     private String vin;
     private String brand;
     private String model;
-    private String year;
+    private int year;
     private FuelType fuel;
     private int cylinderCapacity;
     private String color;

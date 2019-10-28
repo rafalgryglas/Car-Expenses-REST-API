@@ -33,7 +33,7 @@ public class Car {
 
     @Column(name = "YEAR_OF_MANUFACTURE")
     @NotNull
-    private String year;
+    private int year;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "Enum('PETROL','DIESEL','PETROL_LPG','PETROL_ELECTRICITY','HYBRID','ELECTRCITY')")
@@ -46,4 +46,14 @@ public class Car {
 
     @Column
     private String color;
+
+    public Car(String vin,  String brand, String model, int year, FuelType fuel, int cylinderCapacity, String color) {
+        this.vin = vin;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.fuel = fuel;
+        this.cylinderCapacity = cylinderCapacity;
+        this.color = color;
+    }
 }
