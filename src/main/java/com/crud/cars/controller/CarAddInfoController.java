@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/costs/info")
+@RequestMapping("/costs/cars/")
 @CrossOrigin(origins = "*")
 public class CarAddInfoController {
     @Autowired
@@ -18,27 +18,27 @@ public class CarAddInfoController {
     @Autowired
     private CarAdditionalInfoMapper mapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getAllCarsInfo")
+    @GetMapping(value = "/info")
     public List<CarAdditionalInfoDto> findAll() {
-        return mapper.mapToCarAddInfoDtoList(service.carAdditionalInfoList());
+        return mapper.mapToCarAddInfoDtoList(service.findAllAddInfoList());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getInfo")
-    public CarAdditionalInfoDto findByCarAddInfo(@RequestParam Long id) throws NotFoundException {
+    @GetMapping(value = "info/{id}")
+    public CarAdditionalInfoDto findByCarAddInfo(@PathVariable Long id) throws NotFoundException {
         return mapper.mapToCarAddInfoDto(service.findByCarAddId(id).orElseThrow(NotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateInfo")
+    @PutMapping(value = "/info")
     public CarAdditionalInfoDto updateInfo(@RequestBody CarAdditionalInfoDto carAdditionalInfoDto) {
         return mapper.mapToCarAddInfoDto(service.save(mapper.mapToCarAddInfo(carAdditionalInfoDto)));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteInfo")
-    public void deleteCarAddInfo(@RequestParam Long id) {
+    @DeleteMapping(value = "info/{id}")
+    public void deleteCarAddInfo(@PathVariable Long id) {
         service.delete(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addInfo")
+    @PostMapping(value = "/info")
     public void addNewCarAddInfo(@RequestBody CarAdditionalInfoDto carAdditionalInfoDto) {
         service.save(mapper.mapToCarAddInfo(carAdditionalInfoDto));
     }

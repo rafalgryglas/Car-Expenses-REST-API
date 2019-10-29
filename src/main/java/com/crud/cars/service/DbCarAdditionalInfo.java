@@ -14,7 +14,7 @@ public class DbCarAdditionalInfo {
     @Autowired
     private CarAdditionalInfoRepository repository;
 
-    public List<CarAdditionalInfo> carAdditionalInfoList() {
+    public List<CarAdditionalInfo> findAllAddInfoList() {
         return repository.findAll();
     }
 

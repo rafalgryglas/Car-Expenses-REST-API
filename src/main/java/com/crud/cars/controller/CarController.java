@@ -18,27 +18,27 @@ public class CarController {
     @Autowired
     private CarMapper mapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getCars")
+    @GetMapping( value = "cars")
     public List<CarDto> getCars() {
         return mapper.mapToCarDtoList(service.findAllCars());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getCar")
-    public CarDto getCar(@RequestParam Long id) throws NotFoundException {
+    @GetMapping(value = "cars/{id}")
+    public CarDto getCar(@PathVariable Long id) throws NotFoundException {
         return mapper.mapToCarDto(service.findCar(id).orElseThrow(NotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateCar")
+    @PutMapping(value = "/cars")
     public CarDto updateCar(@RequestBody CarDto carDto) {
         return mapper.mapToCarDto(service.saveCar(mapper.mapToCar(carDto)));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteCar")
-    public void deleteCar(@RequestParam Long id) {
+    @DeleteMapping(value = "cars/{id}")
+    public void deleteCar(@PathVariable Long id) {
         service.deleteById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createCar")
+    @PostMapping(value = "cars")
     public void createCar(@RequestBody CarDto carDto) {
         service.saveCar(mapper.mapToCar(carDto));
     }
